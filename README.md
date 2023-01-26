@@ -10,7 +10,7 @@ Open Sound Control client for Flic Hub SDK
 6. (Optional) Open `main.js` in the Flic Hub SDK and paste the following example:
 
 # Example
-This example sends an OSC message to the address "Flic" with the button serial number each time a Flic is pushed.
+This example sends an OSC message to the path `flic` with the button serial number each time a Flic is pushed.
 
 ```javascript
 var oscClient = require("./osc").create("123.123.123.123", 3333);
@@ -19,7 +19,7 @@ var buttonManager = require("buttons");
 
 buttonManager.on("buttonDown", function(obj) {
 	var button = buttonManager.getButton(obj.bdaddr);
-	oscClient.send("Flic s " + button.serialNumber, function() {
+	oscClient.send("flic s " + button.serialNumber, function() {
 		console.log("message sent");
 	});
 });
@@ -44,10 +44,10 @@ oscClient.send(messageString, function() {
 
 The client support OSC strings in the following format:
 ```
-[address] [type value]...
+[path] [[type] [value]]...
 ```
 
-For example, to send a messate to the address `test1` with an integer value of `23`, a float value of `12.34`, a boolean value of `true` and the string `hello`, the message string would look as follows:
+For example, to send a messate to the path `test1` with an integer value of `23`, a float value of `12.34`, a boolean value of `true` and the string `hello`, the message string would look as follows:
 ```
 test1 i 23 f 12.34 b true s hello
 ```
