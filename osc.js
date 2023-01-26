@@ -59,20 +59,17 @@ function createOSCMessage(messageString) {
 				valuesData.push((val >>> 16) & 0xFF);
 				valuesData.push((val >>> 8) & 0xFF);
 				valuesData.push(val & 0xFF);
-				
 			} else if (type == "f") {
 				types += type;
 				var val = parseFloat(valueString);
 				var buff = new Buffer(4);
 				buff.writeFloatBE(val);
 				for (var j = 0; j < buff.length; ++j) {
-        	valuesData.push(buff[j]);
-    		}
-				
+					valuesData.push(buff[j]);
+				}
 			} else if (type == "s") {
 				types += type;
 				addStringToArray(valuesData, valueString);
-
 				valuesData.push(0);
 				alignArray(valuesData);
 			} else if (type == "b") {
